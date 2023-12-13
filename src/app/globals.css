@@ -25,3 +25,12 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+html, body {
+  min-height: 100%;
+  width: 100%;
+}
+
+main {
+  width: 100%;
+}
