@@ -1,8 +1,6 @@
-// src/app/api/oilchange/route.ts
+import type { NextRequest } from 'next/server';
 
-import { NextApiRequest } from 'next';
-
-export async function POST(req: NextApiRequest) {
+export async function POST(req: NextRequest) {
   const requestBody = await new Response(req.body).text();
   const data = JSON.parse(requestBody);
 
