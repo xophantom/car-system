@@ -8,14 +8,15 @@ const Header = () => {
   return (
     <header className="w-full bg-slate-500 h-28 rounded-b-xl">
       <div className="flex justify-center">
-        <nav className="flex flex-col mt-4 text-2xl">
-          <Link legacyBehavior href="/">
+        <div className="flex flex-col mt-4 text-2xl">
+          <Link href="/">
             <GoHomeFill />
           </Link>
-          <Link legacyBehavior className="mt-4" href="/oil-control">
+
+          <Link className="mt-4" href="/oil-control">
             <FaCar />
           </Link>
-        </nav>
+        </div>
       </div>
     </header>
   );
