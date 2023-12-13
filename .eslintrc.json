@@ -1,3 +1,46 @@
 {
-  "extends": "next/core-web-vitals"
+  "settings": {
+    "import/resolver": {
+      "typescript": {}
+    }
+  },
+  "extends": ["airbnb", "airbnb/hooks", "plugin:prettier/recommended", "next/core-web-vitals"],
+  "plugins": ["prettier", "react", "react-hooks", "@typescript-eslint"],
+  "rules": {
+    "prettier/prettier": ["error",{
+      "endOfLine": "auto"}
+    ],
+    "camelcase": "off",
+    "@typescript-eslint/camelcase": "off",
+    "react/require-default-props": "off",
+    "import/prefer-default-export": "off",
+    "react/jsx-filename-extension": "off",
+    "react/function-component-definition": [
+      2,
+      {
+        "namedComponents": "arrow-function",
+        "unnamedComponents": "arrow-function"
+      }
+    ],
+    "import/extensions": "off",
+    "jsx-a11y/label-has-associated-control": "off",
+    "react/jsx-props-no-spreading": "off",
+    "import/no-cycle": "off",
+    "no-use-before-define": "off",
+    "no-underscore-dangle": "off",
+    "no-unused-vars": "off",
+    "no-nested-ternary": "off",
+    "no-unresolved": "off",
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "optionalDependencies": ["xlsx"],
+        "devDependencies": [
+          "**/*.stories.*",
+          "**/.storybook/**/*.*"
+        ],
+        "peerDependencies": true
+      }
+    ]
+  }
 }
