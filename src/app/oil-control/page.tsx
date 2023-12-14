@@ -1,11 +1,26 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../components/Header/Header';
+
+type OilChange = {
+  id: number;
+  last_oil_change_km: number;
+  next_oil_change_km: number;
+};
 
 const OilControl = () => {
   const [lastOilChangeKm, setLastOilChangeKm] = useState('');
   const [nextOilChangeKm, setNextOilChangeKm] = useState(null);
+  const [history, setHistory] = useState<OilChange[]>([]);
+
+  useEffect(() => {
+    fetch('/api/getOilChanges')
+      .then((response) => response.json())
+      .then((data) => {
+        setHistory(data.rows);
+      });
+  }, []);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -48,11 +63,21 @@ const OilControl = () => {
           </button>
         </form>
 
-        <div className="mt-4">
+        <div className="mt-4 mb-4">
           {nextOilChangeKm && (
             <p>Próxima troca de óleo em {nextOilChangeKm} km</p>
           )}
         </div>
+      </div>
+
+      <div className="flex flex-col items-center">
+        <h2>Histórico de Cálculos</h2>
+        {history.map((item) => (
+          <div key={item.id}>
+            Última troca: {item.last_oil_change_km} km, Próxima troca:
+            {item.next_oil_change_km} km
+          </div>
+        ))}
       </div>
     </>
   );

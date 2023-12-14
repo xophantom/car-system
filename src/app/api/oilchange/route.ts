@@ -1,3 +1,4 @@
+import { saveOilChange } from '@/backend/db';
 import type { NextRequest } from 'next/server';
 
 export async function POST(req: NextRequest) {
@@ -7,6 +8,8 @@ export async function POST(req: NextRequest) {
   const { lastOilChangeKm } = data as { lastOilChangeKm: number };
 
   const nextOilChangeKm = lastOilChangeKm + 5000;
+
+  await saveOilChange(lastOilChangeKm, nextOilChangeKm);
 
   return new Response(JSON.stringify({ nextOilChangeKm }), {
     status: 200,
